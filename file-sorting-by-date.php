@@ -4,7 +4,7 @@
 kirby()->hook('panel.file.upload', 'uploaddatesort');
 kirby()->hook('panel.file.replace', 'sortfiles');
 
-function setdate($file) {
+function setdatetime($file) {
 
   //Reference Date Options:
   //"today": Current date.
@@ -15,28 +15,33 @@ function setdate($file) {
   switch ($referencedate) {
     case "today":
       $filedate = time('Y-m-d');
+      $filetime = time('H:i');
       break;
     case "modified":
       $filedate = $file->modified('Y-m-d');
+      $filetime = $file->modified('H:i');
       break;
     case "taken":
       if ($file->type() == "image"){
           $filedate = date('Y-m-d',$file->exif()->timestamp());
+          $filetime = date('H:i',$file->exif()->timestamp());
       } else {
         $filedate = $file->modified('Y-m-d');
+        $filetime = $file->modified('H:i');
       }
       break;
   }
 
   $file->update(array(
-    'date' => $filedate
+    'date' => $filedate,
+    'time' => $filetime
   ));
 
 }
 
 
 function uploaddatesort ($file) {
-  setdate($file);
+  setdatetime($file);
   sortfiles($file);
 }
 
@@ -49,12 +54,12 @@ function sortfiles($file) {
 
   foreach ($file->files() as $f) {
     if ($f->date() == "") {
-      setdate($f);
+      setdatetime($f);
     }
   }
 
   $i = 1;
-  foreach ($file->files()->sortBy('date', $order) as $f) {
+  foreach ($file->files()->sortBy('date', $order, 'time', $order) as $f) {
     $f->update(array(
       'sort'    => $i
     ));
