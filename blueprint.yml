@@ -1,13 +1,15 @@
 title: Default
 files:
-    date:
-      label: Date
-      type: date
-      required: true
-      width: 1/2
-    time:
-      label: Time
-      type: time
-      required: true
-      interval: 1
-      width: 1/2
+    fields:
+        date:
+          label: Date
+          type: date
+          required: true
+          width: 1/2
+        time:
+          label: Time
+          type: time
+          required: true
+          interval: 1
+          width: 1/2
+    sortable: true
