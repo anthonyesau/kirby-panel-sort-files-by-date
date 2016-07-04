@@ -7,13 +7,13 @@ kirby()->hook('panel.file.replace', 'sortfiles');
 function setdatetime($file) {
 
   //Reference Date Options:
-  //"today": Current date.
+  //"now": Current date and time.
   //"modified": Time of last file modification. If uploaded via Panel, this will be the upload date.
   //"taken": If a photo, then when it was taken. Falls back on "modified" behavior otherwise.
   $referencedate = "taken";
 
   switch ($referencedate) {
-    case "today":
+    case "now":
       $filedate = time('Y-m-d');
       $filetime = time('H:i');
       break;
