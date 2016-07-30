@@ -2,7 +2,7 @@
 
 This plugin adds the ability for the Kirby Panel to sort files by date. Within your Kirby project, save to `site/plugins/sort-files-by-date.php`.
 
-Blueprint settings for a page that will allow for file sorting.
+Blueprint settings for a page that will allow for file sorting:
 
 ```
 files:
