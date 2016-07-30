@@ -1,5 +1,5 @@
 <?php
-//Save to site/plugins/file-sorting-by-date.php
+//Save to site/plugins/sort-files-by-date.php
 
 kirby()->hook('panel.file.upload', 'uploaddatesort');
 kirby()->hook('panel.file.replace', 'sortfiles');
